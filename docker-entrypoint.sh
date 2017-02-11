@@ -16,12 +16,13 @@ if [[ "$*" == npm*start* ]]; then
 			tar -c --one-file-system -C "$dir" . | tar xC "$targetDir"
 		fi
 	done
-
+	
 	if [ ! -e "$GHOST_CONTENT/config.js" ]; then
+		echo "TESTIS"
 		sed -r '
 			s/127\.0\.0\.1/0.0.0.0/g;
 			s!path.join\(__dirname, (.)/content!path.join(process.env.GHOST_CONTENT, \1!g;
-		' "$GHOST_SOURCE/config.example.js" > "$GHOST_CONTENT/config.js"
+		' "$GHOST_SOURCE/config.js" > "$GHOST_CONTENT/config.js"
 	fi
 fi
 
